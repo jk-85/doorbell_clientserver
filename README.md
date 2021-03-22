@@ -40,5 +40,7 @@ I'm unsure bubt I think I used a 24 V relay, because 12 V AC rectified is more t
 
 Client: Compile client.c and run "client.exe" with the ip-adress of your server, e.g. "client.exe 192.168.1.33"
 
-## Bell cound
+Please be aware that the right mouse-button will be used on your server. My server runs headless most of the time and the users are logged off, so using that right mouse button isn't a big deal. If you use your workstation where you're logged in all the time this could have silly side effect (e.g. when someone press your doorbell he could make a right click on your computer). Get a clue now, why I use the right mouse button instead of the left? ;)
+
+## Bell sound
 You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Format.
