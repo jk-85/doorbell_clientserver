@@ -26,14 +26,20 @@ Used compiler for windows 7 (could work on other windows platforms too): [Downlo
 
 client.c: Windows client (TCP). Compiled under windows with the following options:
 
-gcc -o client.exe client.c -lws2_32 -lmswsock -ladvapi32 -lwinmm
+# gcc -o client.exe client.c -lws2_32 -lmswsock -ladvapi32 -lwinmm
 
 ## TCP-Server
 Used compiler for (MX) linux: gcc
 
-bell_server.c: Linux server (TCP). Compiled with "gcc bell_server.c -o bell_server"
+bell_server.c: Linux server (TCP). Compiled with
 
-mouse_shared.c: For server. Watches mouse state. Compiled with "gcc mouse_shared.c -o mouse_shared". Has NOT to be startet manually, will be startet automatically.
+# gcc bell_server.c -o bell_server
+
+mouse_shared.c: For server. Watches mouse state. Compiled with
+
+# gcc mouse_shared.c -o mouse_shared".
+
+Has NOT to be startet manually, will be startet automatically.
 
 ## Installation
 Server: Just compile everything and start "./bell_server" with the optional argument -fakebell if you want to test your bell. That command runs fake bells every 30 seconds and sends it to all connected clients.
