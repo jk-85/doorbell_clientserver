@@ -44,3 +44,12 @@ Please be aware that the right mouse-button will be used on your server. My serv
 
 ## Bell sound
 You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Format.
+
+## More pictures of the electronics
+oorbell_Complete.JPG
+Doorbell_Modification_.JPG
+Doorbell_Modification.JPG
+Doorbell_Modification2.JPG
+Doorbell_Modification3.JPG
+Doorbell_Modification4.JPG
+Doorbell_Modification5.JPG
