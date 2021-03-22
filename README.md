@@ -3,6 +3,7 @@
 Hear your doorbell sound (with wagner hammer) on every computer (no raspberry or arduino needed!)
 
 ![Electronics](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/Electronics.jpg)
+
 More images with explanation of the electronics see folder "sample_pictures".
 
 Client is written for Windows 7, but should work with other versions too. Server is written for (MX) linux.
