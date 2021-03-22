@@ -38,7 +38,7 @@ Server: Just compile everything and start "./bell_server" with the optional argu
 
 I'm unsure bubt I think I used a 24 V relay, because 12 V AC rectified is more than 12 V DC and I think I grabbed a 24 V relay. You can also test the relay with a 9 V battery in good condition and a simple button in series.
 
-Client: Compile client.c and run "client.exe" with the ip-adress of your server, e.g. "client.exe 192.168.1.50"
+Client: Compile client.c and run "client.exe" with the ip-adress of your server, e.g. "client.exe 192.168.1.33"
 
 ## Bell cound
 You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Format.
