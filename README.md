@@ -26,7 +26,9 @@ client.c: Windows client (TCP). Compiled under windows with the following option
 
 ## TCP-Server
 Used compiler for (MX) linux: gcc
+
 bell_server.c: Linux server (TCP). Compiled with "gcc bell_server.c -o bell_server"
+
 mouse_shared.c: For server. Watches mouse state. Compiled with "gcc mouse_shared.c -o mouse_shared". Has NOT to be startet manually, will be startet automatically.
 
 ## Installation
