@@ -15,4 +15,7 @@ This is not needed: I also soldered 2 wires on the left button and 2 wires on th
 ## Do this at your own risk, I'm not responsible for any damages that could happen, doorbell electronics could vary and voltage could vary, measure it first and measure the current your relay gets. 
 Then I opened the front cover of the doorbell where the wagner hammer sits and connect my (full-wave) rectifier in parallel with the coil from the wagner hammer.
 
+To be continued...
+
+
 client_portable.
