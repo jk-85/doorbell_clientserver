@@ -24,7 +24,9 @@ Then I opened the front cover of the doorbell where the wagner hammer sits and c
 ## TCP-Client
 Used compiler for windows 7 (could work on other windows platforms too): [Download compiler](http://win-builds.org/doku.php/download_and_installation_from_windows). My used compiler-version was 1.5.0
 
-client.c: Windows client (TCP). Compiled under windows with the following options: "gcc -o client.exe client.c -lws2_32 -lmswsock -ladvapi32 -lwinmm"
+client.c: Windows client (TCP). Compiled under windows with the following options:
+
+gcc -o client.exe client.c -lws2_32 -lmswsock -ladvapi32 -lwinmm
 
 ## TCP-Server
 Used compiler for (MX) linux: gcc
