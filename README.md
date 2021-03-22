@@ -33,7 +33,7 @@ Used compiler for (MX) linux: gcc
 
 bell_server.c: Linux server (TCP). Compiled with
 
-## gcc bell_server.c -o bell_server
+### gcc bell_server.c -o bell_server
 
 mouse_shared.c: For server. Watches mouse state. Compiled with
 
