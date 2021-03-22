@@ -1,6 +1,8 @@
 # doorbell_clientserver
 ## SMART home without raspberry or arduino
-Hear your doorbell (with wagner hammer) on every computer (no raspberry or arduino needed!)
+Hear your doorbell sound (with wagner hammer) on every computer (no raspberry or arduino needed!)
+
+![Gordon Gekko](http://mikevanrossum.nl/static/gekko.jpg)
 
 Client is written for Windows 7, but should work with other versions too. Server is written for (MX) linux.
 
@@ -15,5 +17,18 @@ This is not needed: I also soldered 2 wires on the left button and 2 wires on th
 
 ## Do this at your own risk and only if you know what you're doing, I'm not responsible for any damages that could happen, doorbell electronics could vary and voltage could vary, measure it first and measure the current your relay gets. 
 Then I opened the front cover of the doorbell where the wagner hammer sits and connect my (full-wave) rectifier in parallel with the coil from the wagner hammer.
+
+## TCP-Client
+Used compiler for windows 7 (could work on other windows platforms too): ![Download compiler](http://win-builds.org/doku.php/download_and_installation_from_windows). My used compiler-version was 1.5.0
+client.c: Windows client (TCP). Compiled under windows with the following options: "gcc -o client.exe client.c -lws2_32 -lmswsock -ladvapi32 -lwinmm"
+
+## TCP-Server
+Used compiler for (MX) linux: gcc
+bell_server.c: Linux server (TCP). Compiled with "gcc bell_server.c -o bell_server"
+mouse_shared.c: For server. Watches mouse state. Compiled with "gcc mouse_shared.c -o mouse_shared". Has NOT to be startet manually, will be startet automatically.
+
+## Installation
+Server: Just compile everything and start "./bell_server" with the optional argument -fakebell if you want to test your bell. That command runs fake bells every 30 seconds and sends it to all connected clients.
+Client: Compile client.c and run "client.exe" with the ip-adress of your server, e.g. "client.exe 192.168.1.50"
 
 To be continued...
