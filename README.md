@@ -1,5 +1,5 @@
 # doorbell_clientserver
-# SMART home without raspberry or arduino ;)
+## SMART home without raspberry or arduino
 Hear your doorbell (with wagner hammer) on every computer (no raspberry or arduino needed!)
 
 Client is written for Windows 7, but should work with other versions too. Server is written for (MX) linux.
