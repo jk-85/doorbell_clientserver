@@ -35,6 +35,8 @@ mouse_shared.c: For server. Watches mouse state. Compiled with "gcc mouse_shared
 ## Installation
 Server: Just compile everything and start "./bell_server" with the optional argument -fakebell if you want to test your bell. That command runs fake bells every 30 seconds and sends it to all connected clients.
 
+I'm unsure bubt I think I used a 24 V relay, because 12 V AC rectified is more than 12 V DC and I think I grabbed a 24 V relay. You can also test the relay with a 9 V battery in good condition and a simple button in series.
+
 Client: Compile client.c and run "client.exe" with the ip-adress of your server, e.g. "client.exe 192.168.1.50"
 
 To be continued...
