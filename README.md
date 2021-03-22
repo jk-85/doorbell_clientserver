@@ -40,4 +40,5 @@ I'm unsure bubt I think I used a 24 V relay, because 12 V AC rectified is more t
 
 Client: Compile client.c and run "client.exe" with the ip-adress of your server, e.g. "client.exe 192.168.1.50"
 
-To be continued...
+## Bell cound
+You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Format.
