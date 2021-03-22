@@ -26,7 +26,7 @@ Used compiler for windows 7 (could work on other windows platforms too): [Downlo
 
 client.c: Windows client (TCP). Compiled under windows with the following options:
 
-**gcc -o client.exe client.c -lws2_32 -lmswsock -ladvapi32 -lwinmm**
+**gcc client.c -o client.exe -lws2_32 -lmswsock -ladvapi32 -lwinmm**
 
 ## TCP-Server
 Used compiler for (MX) linux: gcc
