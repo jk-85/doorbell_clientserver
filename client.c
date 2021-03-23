@@ -122,14 +122,13 @@ int __cdecl main(int argc, char **argv)
 				PlaySound(TEXT("klingel.wav"), NULL, SND_ASYNC);
 				
 				time_t timer;
-				char buffer[26];
-				char tmp[47];
+				char buffer[50];
+				char tmp[60];
 				struct tm* tm_info;
 				timer = time(NULL);
 				tm_info = localtime(&timer);
-				strftime(buffer, 26, "%d.%m.%Y um %H:%M:%S", tm_info);
-				snprintf(tmp, sizeof(tmp)+1, "Klingel gedr ckt am %s", buffer);
-				tmp[12] = '\x81';
+				strftime(buffer, sizeof(buffer), "%d.%m.%Y um %H:%M:%S Uhr", tm_info);
+				snprintf(tmp, sizeof(tmp), "Klingel gedr\201ckt am %s\r\n", buffer);
 				printf("%s\n", tmp);
 				// Not possible because it's modal and blocks
 				//MessageBox(0, "Tuerklingel wurde gedrueckt um", "Tuerklingel",0 | MB_ICONINFORMATION);
