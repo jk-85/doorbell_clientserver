@@ -31,11 +31,13 @@ void sigpipe_handler(int unused)
 
 void ctrlc_handler(int sig)
 {
-	//printf("CTRL-C pressed!\n");
-	// TODO: Socket schlie√üen etc....
+	// printf("CTRL-C pressed!\n");
+	// TODO: Socket schlieﬂen etc....
 	system("killall mouse_shared &");
 	exit(0);
 }
+
+#include "write_history.c"
 
 int write_to_memory(char* str)
 { 
@@ -90,6 +92,7 @@ int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc
 						if(write(newsockfd, (char *)sendBuff, strlen((char *)sendBuff)) == -1) {
 							logfile("Inside memory-function: client_broken or closed!");
 						}
+						write_to_history_file();
 						sleep(2);
 						break;
 					}

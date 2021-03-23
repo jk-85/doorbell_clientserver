@@ -4,6 +4,7 @@
 #include <sys/ipc.h> 
 #include <sys/shm.h> 
 #include <string.h>
+#include <time.h>
 
 int write_to_memory(char* str)
 { 
@@ -27,6 +28,8 @@ int write_to_memory(char* str)
   
     return 0;
 }
+
+#include "write_history.c"
 
 int main(int argc, char** argv)
 {
@@ -68,6 +71,7 @@ int main(int argc, char** argv)
 			if(right == 2) {
 				//printf("Bell pressed!!!!!!\n");
 				write_to_memory("BELL");
+				write_to_history_file();
 			}
 		}
     }
