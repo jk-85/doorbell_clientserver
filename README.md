@@ -55,6 +55,7 @@ You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Forma
 
 ## More pictures of the electronics
 **You can view big image versions [here](https://github.com/jk-85/doorbell_clientserver/tree/main/sample_pictures)**
+
 ![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Complete.JPG)
 ![2](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification_.JPG)
 ![3](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification.JPG)
