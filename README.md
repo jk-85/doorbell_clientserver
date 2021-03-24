@@ -67,6 +67,7 @@ You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Forma
 ## Circuit
 ![1](https://github.com/jk-85/doorbell_clientserver/blob/main/circuit/circuit.png)
 
+You have to play a little bit with the resistor (that is called "variable resistor" in the sample pictures), I don't know the exact value, there's a formula on the internet what's a good resistor value to reduce the spike the relay coil (and AC bell coil?) produces when they shut off. 
 If you want to edit it, circuit was made with https://www.circuit-diagram.org/editor and a svg and cddx file can be found in [this](https://github.com/jk-85/doorbell_clientserver/blob/main/circuit) folder.
 
 ## Adding client to Windows (7) autostart
