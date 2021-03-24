@@ -63,3 +63,12 @@ You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Forma
 ![5](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification3.JPG)
 ![6](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification4.JPG)
 ![7](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification5.JPG)
+
+## Adding client.exe to Windows (7) autostart
+![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/security_warning.png)
+If you want to add client.exe to Windows 7 autostart it may be needed to do the following (manual only in German). **_Warning_**, this is a security risk!
+Startmenü -> Ausführen -> gpedit.msc
+Benutzerkonfiguration -> Administrative Vorlagen auswählen
+Bereich Windows-Komponenten -> Anlagen-Manager
+Da gibt's zum Beispiel "Aufnahmeliste für Dateitypen mit niedrigem Risiko".
+Dort kann man “Richtlinieneinstellung bearbeiten” und die Richtlinie aktivieren und als Option .cmd eintragen
