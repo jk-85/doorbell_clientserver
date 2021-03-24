@@ -14,12 +14,17 @@
 #include <syslog.h>
 #include <sys/ipc.h> 
 #include <sys/shm.h> 
+#include <stdbool.h>
+#include <inttypes.h>
 
 int logfile(char* message) {
+	char buffer[4096];
+	
 	setlogmask(LOG_UPTO (LOG_NOTICE));
 	openlog("bell_server", LOG_PID | LOG_NDELAY, LOG_LOCAL1);
 	//syslog (LOG_NOTICE, "Program started by User %d", getuid ());
-	syslog(LOG_NOTICE, message);
+	snprintf((char *)buffer, sizeof(buffer), "[%s]", message);
+	syslog(LOG_NOTICE, buffer);
 	closelog();
 }
 
@@ -62,6 +67,7 @@ int write_to_memory(char* str)
     return 0;
 }
 
+// if "everysecond" is set, fakepress the bell every second
 int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc)
 {
     // ftok to generate unique key 
@@ -74,26 +80,42 @@ int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc
     char *str = (char*) shmat(shmid,(void*)0,0); 
 
 	while(1) {
-		if(argc == 2) {
+		if(argc >= 2) {
 			if(strcmp(argv[1],"-fakebell") == 0) {
-				  time_t rawtime;
-				  struct tm * timeinfo;
-				  char secs[3] = {0};
+				time_t rawtime;
+				struct tm * timeinfo;
+				char secs[3] = {0};
+				int secs_ = 0;
+				bool everysecond = NULL;
+				
+				if(argc == 3) {
+					logfile(argv[2]);
+					if(strcmp(argv[2],"1") == 0)
+						everysecond = true;
+					else
+						everysecond = false;
+				}
+
 				while(1) {
 				    time (&rawtime);
 					timeinfo = localtime (&rawtime);
 					secs[0] = asctime(timeinfo)[17];
 					secs[1] = asctime(timeinfo)[18];
 					secs[2] = '\0';
-					//printf("[%s]", secs);
-					if(strcmp(secs, "30") == 0 || strcmp(secs, "00") == 0) {
+					secs_ = strtoimax(secs,NULL,10);
+					
+					if(everysecond) goto jump1;
+					
+					//if(strcmp(secs, "30") == 0 || strcmp(secs, "00") == 0) {
+					if(secs_ == 0 || secs_ == 30) {
+						jump1:
 						logfile("FAKEBELL");
 						snprintf((char *)sendBuff, sizeof((char *)sendBuff)+1, "%s", "BELL");
 						if(write(newsockfd, (char *)sendBuff, strlen((char *)sendBuff)) == -1) {
 							logfile("Inside memory-function: client_broken or closed!");
 						}
 						write_to_history_file();
-						sleep(2);
+						sleep(everysecond ? 1 : 2);
 						break;
 					}
 				}
@@ -143,7 +165,7 @@ int main(int argc, char *argv[])
 	logfile("Started");
 	
     printf("Bell-Server v1.0\nUsage: %s", argv[0]);
-	printf(" [-fakebell]\nIf -fakebell is set, server sends bell-signals every 30 seconds (e.g. for delay testing-purposes)\n");
+	printf(" [-fakebell]\nIf -fakebell is set, server sends bell-signals every 30 seconds (e.g. for delay testing-purposes)\nUse '-fakebell 1' for every 1 second.");
 	
 	// execute mouse-checking and writing BELL-state to shared memory
 	system("./mouse_shared &");
