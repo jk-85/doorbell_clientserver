@@ -64,7 +64,7 @@ You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Forma
 ![6](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification4.JPG)
 ![7](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification5.JPG)
 
-## Adding client.exe to Windows (7) autostart
+## Adding client to Windows (7) autostart
 ![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/security_warning.jpg)
 
 Goto Start menue, input "shell:startup" and paste a link to client.cmd. Edit your client.cmd that it fits your server IP or server name.
