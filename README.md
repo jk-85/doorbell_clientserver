@@ -42,7 +42,7 @@ mouse_shared.c: For server. Watches mouse state. Compiled with
 Has NOT to be startet manually, will be startet automatically.
 
 ## Installation
-Server: Just compile everything and start "./bell_server" with the optional argument -fakebell if you want to test your bell. That command runs fake bells every 30 seconds and sends it to all connected clients.
+Server: Just compile everything and start "./bell_server" with the optional argument -fakebell if you want to test your bell. That command runs fake bells every 30 seconds and sends it to all connected clients. You can also use "fakebell -1" to produce fake bells every second.
 
 I'm unsure bubt I think I used a 24 V relay, because 12 V AC rectified is more than 12 V DC and I think I grabbed a 24 V relay. You can also test the relay with a 9 V battery in good condition and a simple button in series.
 
@@ -90,3 +90,7 @@ If you want to add your modified client.cmd to Windows 7 autostart (startup) it 
 You can start your client.cmd minimized with this option:
 
 ![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/startup.jpg)
+
+## Update(s)
+- Added a file that will be created after the first pressed doorbell that's called _doorbell_history.txt_. There you can find the exact date and time the doorbell was pressed. Be aware that your date and time on your machine has to be accurate to get proper results.
+- Added the option -fakebell 1 (the 1 is new) to test your bell every 1 second.
