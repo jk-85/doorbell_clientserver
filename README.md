@@ -65,7 +65,8 @@ You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Forma
 ![7](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification5.JPG)
 
 ## Adding client.exe to Windows (7) autostart
-![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/security_warning.png)
+![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/security_warning.jpg)
+
 If you want to add client.exe to Windows 7 autostart it may be needed to do the following (manual only in German). **_Warning_**, this is a security risk!
 Startmenü -> Ausführen -> gpedit.msc
 Benutzerkonfiguration -> Administrative Vorlagen auswählen
