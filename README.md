@@ -82,4 +82,5 @@ If you want to add your modified client.cmd to Windows 7 autostart (startup) it 
 - Dort kann man “Richtlinieneinstellung bearbeiten” und die Richtlinie aktivieren und als Option .cmd eintragen
 
 You can start your client.cmd minimized with this option:
+
 ![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/startup.jpg)
