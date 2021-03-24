@@ -93,4 +93,4 @@ You can start your client.cmd minimized with this option:
 
 ## Update(s)
 - Added a file that will be created after the first pressed doorbell that's called _doorbell_history.txt_. There you can find the exact date and time the doorbell was pressed. Be aware that your date and time on your machine has to be accurate to get proper results.
-- Added the option -fakebell 1 (the 1 is new) to test your bell every 1 second.
+- Added the option -fakebell 1 (the 1 is new) to hit a fake bell every second.
