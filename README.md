@@ -64,6 +64,10 @@ You can replace "Klingel.wav" with your own sound. It has to be in the WAV-Forma
 ![6](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification4.JPG)
 ![7](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/small/Doorbell_Modification5.JPG)
 
+## Circuit
+[1](https://github.com/jk-85/doorbell_clientserver/blob/main/circuit/circuit.svg)
+If you want to edit it, circuit was made with https://www.circuit-diagram.org/editor
+
 ## Adding client to Windows (7) autostart
 ![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/security_warning.jpg)
 
