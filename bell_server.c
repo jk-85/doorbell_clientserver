@@ -163,10 +163,12 @@ int main(int argc, char *argv[])
 	//struct timeval timeout;
 	
 	logfile("Started");
-	
+	setvbuf(stdout, NULL, _IONBF, 0);
+
     printf("Bell-Server v1.0\nUsage: %s", argv[0]);
-	printf(" [-fakebell]\nIf -fakebell is set, server sends bell-signals every 30 seconds (e.g. for delay testing-purposes)\nUse '-fakebell 1' for every 1 second.");
-	
+	printf(" [-fakebell]");
+	printf("\n\nIf -fakebell is set, server sends bell-signals every 30 seconds (e.g. for delay testing-purposes).\n");
+	printf("Use '-fakebell 1' for every 1 second.\n\n");
 	// execute mouse-checking and writing BELL-state to shared memory
 	system("./mouse_shared &");
 	
