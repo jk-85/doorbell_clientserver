@@ -1,5 +1,6 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <netinet/tcp.h>
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,7 +33,7 @@ void ctrlc_handler(int sig)
 {
 	// printf("CTRL-C pressed!\n");
 	// TODO: Socket schließen etc....
-	system("killall mouse_shared");
+	system("killall mouse_shared &");
 	exit(0);
 }
 
@@ -84,6 +85,13 @@ int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc
 	while(1) {
 		if(argc >= 2) {
 			if(strcmp(argv[1],"-fakebell") == 0) {
+				// Test if client alive
+				snprintf((char *)sendBuff, sizeof((char *)sendBuff)+1, "%s", "I");
+				if(write(newsockfd, (char *)sendBuff, strlen((char *)sendBuff)) == -1) {
+					logfile("Inside memory-function (fakebell): client_broken or closed!");
+					exit(1);
+				}
+				
 				time_t rawtime;
 				struct tm * timeinfo;
 				char secs[3] = {0};
@@ -112,13 +120,18 @@ int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc
 						jump1:
 						logfile("FAKEBELL");
 						snprintf((char *)sendBuff, sizeof((char *)sendBuff)+1, "%s", "BELL");
-						if(write(newsockfd, (char *)sendBuff, strlen((char *)sendBuff)) == -1) {
+						if(write(newsockfd, (char *)sendBuff, strlen((char *)sendBuff)) == -1)
+						{
 							logfile("Inside memory-function: client_broken or closed!");
-							exit(1):
+							exit(1);
 						}
 						write_to_history_file();
 						sleep(everysecond ? 1 : 2);
 						break;
+					}
+					else {
+						// Wait (Very importnat!)
+						usleep(20 * 1000);
 					}
 				}
 			}
@@ -130,13 +143,17 @@ int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc
 				snprintf((char *)sendBuff, sizeof((char *)sendBuff)+1, "%s", "BELL");
 				if(write(newsockfd, (char *)sendBuff, strlen((char *)sendBuff)) == -1) {
 					logfile("Inside memory-function: client_broken or closed!");
-					// todo: end child?
+					exit(1);
 				}
 				break;
 			}
 			else {
-				// bell not pressed, test if client is alive and exit child if not
-				// todo
+				// bell not pressed this time, test if client is alive and exit child if not
+				snprintf((char *)sendBuff, sizeof((char *)sendBuff)+1, "%s", "I");
+				if(write(newsockfd, (char *)sendBuff, strlen((char *)sendBuff)) == -1) {
+					logfile("Inside memory-function: client_broken or closed!");
+					exit(1);
+				}
 				usleep(20 * 1000);
 			}
 		}

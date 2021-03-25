@@ -116,9 +116,9 @@ int __cdecl main(int argc, char **argv)
     do {
         iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
         if ( iResult > 0 ) {
-            printf("Bytes received: %d\n", iResult);
 			recvbuf[iResult]='\0';
 			if(strcmp(recvbuf, "BELL") == 0) {
+				printf("Bytes received: %d\n", iResult);
 				PlaySound(TEXT("klingel.wav"), NULL, SND_ASYNC);
 				
 				time_t timer;
@@ -132,6 +132,9 @@ int __cdecl main(int argc, char **argv)
 				printf("%s\n", tmp);
 				// Not possible because it's modal and blocks
 				//MessageBox(0, "Tuerklingel wurde gedrueckt um", "Tuerklingel",0 | MB_ICONINFORMATION);
+			}
+			if(strcmp(recvbuf, "I") == 0) {
+				
 			}
 		}
         else if ( iResult == 0 )

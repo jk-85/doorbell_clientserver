@@ -74,6 +74,7 @@ int main(int argc, char** argv)
 				write_to_history_file();
 			}
 		}
+		//usleep(50 * 1000);
     }
     return 0; 
 }
