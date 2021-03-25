@@ -28,18 +28,20 @@ int logfile(char* message) {
 	closelog();
 }
 
-void sigpipe_handler(int unused)
-{
-	// Broken Pipe
-	logfile("Broken pipe: Client disconnected!");
-}
-
 void ctrlc_handler(int sig)
 {
 	// printf("CTRL-C pressed!\n");
 	// TODO: Socket schlieﬂen etc....
-	system("killall mouse_shared &");
+	system("killall mouse_shared");
 	exit(0);
+}
+
+void sigpipe_handler(int unused)
+{
+	// Broken Pipe
+	logfile("Broken pipe: Client disconnected!");
+	logfile("Terminating child thread now...");
+	_exit(1);
 }
 
 #include "write_history.c"
@@ -89,7 +91,6 @@ int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc
 				bool everysecond = NULL;
 				
 				if(argc == 3) {
-					logfile(argv[2]);
 					if(strcmp(argv[2],"1") == 0)
 						everysecond = true;
 					else
@@ -113,6 +114,7 @@ int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc
 						snprintf((char *)sendBuff, sizeof((char *)sendBuff)+1, "%s", "BELL");
 						if(write(newsockfd, (char *)sendBuff, strlen((char *)sendBuff)) == -1) {
 							logfile("Inside memory-function: client_broken or closed!");
+							exit(1):
 						}
 						write_to_history_file();
 						sleep(everysecond ? 1 : 2);
@@ -121,14 +123,21 @@ int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc
 				}
 			}
 		}
-		else if(argc == 1) {
+		else {
+			// If bell was pressed
 			if(strcmp(str, "BELL") == 0) {
 				logfile("BELL");
 				snprintf((char *)sendBuff, sizeof((char *)sendBuff)+1, "%s", "BELL");
 				if(write(newsockfd, (char *)sendBuff, strlen((char *)sendBuff)) == -1) {
 					logfile("Inside memory-function: client_broken or closed!");
+					// todo: end child?
 				}
 				break;
+			}
+			else {
+				// bell not pressed, test if client is alive and exit child if not
+				// todo
+				usleep(20 * 1000);
 			}
 		}
 	}
@@ -164,11 +173,11 @@ int main(int argc, char *argv[])
 	
 	logfile("Started");
 	setvbuf(stdout, NULL, _IONBF, 0);
-
     printf("Bell-Server v1.0\nUsage: %s", argv[0]);
 	printf(" [-fakebell]");
 	printf("\n\nIf -fakebell is set, server sends bell-signals every 30 seconds (e.g. for delay testing-purposes).\n");
 	printf("Use '-fakebell 1' for every 1 second.\n\n");
+
 	// execute mouse-checking and writing BELL-state to shared memory
 	system("./mouse_shared &");
 	
@@ -201,27 +210,28 @@ int main(int argc, char *argv[])
     while(1)
     {
 		newsockfd = accept(listenfd, (struct sockaddr*)NULL, NULL);	
-         if (newsockfd < 0) {
+		if (newsockfd < 0) {
 			logfile("ERROR on accept!");
 			return -1;
-		 }
-		 //fork new process
-         pid = fork();
-         if (pid < 0) {
-              logfile("ERROR in new process creation");
-         }
-         if (pid == 0) {
-            //child process
-            close(listenfd);
-            //do whatever you want
+		}
+		//fork new process
+        pid = fork();
+        if (pid < 0) {
+			logfile("ERROR in new process creation");
+        }
+        if (pid == 0) {
+			//child process
+			close(listenfd);
+			//do whatever you want
 			////////////////////
-			// Before sending, test if client request was "want_bell"
+
 			int n = 0;
 			char buffer[256];
 			bzero(buffer,256);
 			int client_bytes = 0;
 			
 			if((client_bytes = read(newsockfd,buffer,9)) > 0) {
+				// Before sending, test if client request was "want_bell"
 				if(strcmp(buffer, "want_bell") == 0) {  // Want to have bell-signals
 					bzero(buffer,256);
 					// reset, because memory could have the last door-pressed bell
@@ -241,7 +251,7 @@ int main(int argc, char *argv[])
 					}
 				}
 				else {
-					//logfile("want_bell_NOT_there");
+					logfile("want_bell_NOT_there");
 				}
 			}
 			else if(client_bytes == 0) {
