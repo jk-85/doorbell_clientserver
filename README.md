@@ -2,6 +2,9 @@
 ## SMART home without raspberry or arduino
 Hear your doorbell sound (with wagner hammer) on every computer (no raspberry or arduino needed!)
 
+## Updates
+- 03/25/2021: Huge CPU leak fixed
+
 ![Sample output](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/Sample_Output.jpg)
 ![Electronics](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/Electronics.jpg)
 
