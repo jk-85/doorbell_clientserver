@@ -75,21 +75,8 @@ You have to play a little bit with the resistor (that is called "variable resist
 If you want to edit it, circuit was made with https://www.circuit-diagram.org/editor and a svg and cddx file can be found in [this](https://github.com/jk-85/doorbell_clientserver/blob/main/circuit) folder.
 
 ## Adding client to Windows (7) autostart
-![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/security_warning.jpg)
 
 Goto Start menue, input "shell:startup" and paste a link to client.cmd. Edit your client.cmd that it fits your server IP or server name.
-
-If you want to add your modified client.cmd to Windows 7 autostart (startup) it may be needed to do the following (manual only in German). **_Warning_**, this is a security risk!
-
-- Startmenü -> Ausführen -> gpedit.msc
-
-- Benutzerkonfiguration -> Administrative Vorlagen auswählen
- 
-- Bereich Windows-Komponenten -> Anlagen-Manager
- 
-- Da gibt's zum Beispiel "Aufnahmeliste für Dateitypen mit niedrigem Risiko".
- 
-- Dort kann man “Richtlinieneinstellung bearbeiten” und die Richtlinie aktivieren und als Option .cmd eintragen
 
 You can start your client.cmd minimized with this option:
 
