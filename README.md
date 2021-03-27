@@ -7,13 +7,9 @@ Hear your doorbell sound on every computer (no raspberry or arduino needed!)
 
 More images with explanation of the electronics see folder "sample_pictures".
 
-## Updates
-- 03/25/2021: Huge CPU leak fixed
-
-
 Client is written for Windows 7, but should work with other versions too. Server is written for (MX) linux.
 
-You have no raspberry or arduino but need to digitalize your door-bell with wagner hammer? No problem, just grab the electronics of an old mouse with usb-port (ps/2 might work as well), solder 2 wires on your mouse-button (I choose the right button) and connect that to a relay.
+You have no raspberry or arduino but need to digitalize your door-bell? No problem, just grab the electronics of an old mouse with usb-port (ps/2 might work as well), solder 2 wires on your mouse-button (I choose the right button) and connect that to a relay.
 
 My doorbell has about 12 V AC (alternative current) and I build 2 little plastic boxes with
 
@@ -23,7 +19,7 @@ My doorbell has about 12 V AC (alternative current) and I build 2 little plastic
 This is not needed: I also soldered 2 wires on the left button and 2 wires on the middle button (usually the middle-click from the wheel, works only if your mouse has a wheel and/or middle-button). Reason was to have some additional self-made "GPIO"-pins (or "GPO"-pins because only reading and NOT writing) for future projects to get more signals for the mouse electronics board.
 
 ## Do this at your own risk and only if you know what you're doing, I'm not responsible for any damages that could happen, doorbell electronics could vary and voltage could vary, measure it first and measure the current your relay gets. 
-Then I opened the front cover of the doorbell where the wagner hammer sits and connect my (full-wave) rectifier in parallel with the coil from the wagner hammer.
+Then I opened the front cover of the doorbell where the hammer sits and connect my (full-wave) rectifier in parallel with the coil from the hammer.
 
 ## TCP-Client
 Used compiler for windows 7 (could work on other windows platforms too): [Download compiler](http://win-builds.org/doku.php/download_and_installation_from_windows). My used compiler-version was 1.5.0
@@ -82,8 +78,9 @@ You can start your client.cmd minimized with this option:
 
 ![1](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/startup.jpg)
 
-## Update(s)
+## Updates
 - Added a file that will be created after the first pressed doorbell that's called _doorbell_history.txt_. There you can find the exact date and time the doorbell was pressed. Be aware that your date and time on your machine has to be accurate to get proper results.
 - Added the option -fakebell 1 (the 1 is new) to hit a fake bell every second.
+- 03/25/2021: Huge CPU leak fixed
 
 If you have a question, you can e-mail me at tour2002 [AT] arcor [point] de
