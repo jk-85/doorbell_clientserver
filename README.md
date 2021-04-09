@@ -2,7 +2,7 @@
 ## SMART home without raspberry or arduino
 Hear your doorbell sound on every computer (no raspberry or arduino needed!)
 
-Shortest description: Use an old mouse electronics board, relay and bridge-rectifier to digitalize your doorbell.
+Shortest explanation: Use an old mouse electronics board, relay and bridge-rectifier to digitalize your doorbell.
 
 ![Sample output](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/Sample_Output.jpg)
 ![Electronics](https://github.com/jk-85/doorbell_clientserver/blob/main/sample_pictures/Electronics.jpg)
