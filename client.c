@@ -1,4 +1,4 @@
-// Make with: gcc -o client client.c -lws2_32 -lmswsock -ladvapi32 -lwinmm
+// Make with: gcc -o client.exe client.c -lws2_32 -lmswsock -ladvapi32 -lwinmm
 
 #define WIN32_LEAN_AND_MEAN
 
@@ -117,7 +117,7 @@ int __cdecl main(int argc, char **argv)
         iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
         if ( iResult > 0 ) {
 			recvbuf[iResult]='\0';
-			if(strcmp(recvbuf, "BELL") == 0) {
+			if(strstr(recvbuf, "BELL") != NULL) {
 				printf("Bytes received: %d\n", iResult);
 				PlaySound(TEXT("klingel.wav"), NULL, SND_ASYNC);
 				
@@ -133,7 +133,7 @@ int __cdecl main(int argc, char **argv)
 				// Not possible because it's modal and blocks
 				//MessageBox(0, "Tuerklingel wurde gedrueckt um", "Tuerklingel",0 | MB_ICONINFORMATION);
 			}
-			if(strcmp(recvbuf, "I") == 0) {
+			if(strstr(recvbuf, "I") != NULL) {
 				
 			}
 		}

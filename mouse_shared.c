@@ -73,6 +73,9 @@ int main(int argc, char** argv)
 				write_to_memory("BELL");
 				write_to_history_file();
 			}
+			
+			// Testing only
+			//if(x != 0 || y != 0) { write_to_memory("BELL"); }
 		}
 		//usleep(50 * 1000);
     }
