@@ -86,4 +86,4 @@ You can start your client.cmd minimized with this option:
 - 03/25/2021: Huge CPU leak fixed
 - 04/27/2021: Bugfixes, mainly in client
 
-If you have a question, you can e-mail me at tour2002 [AT] arcor [point] de
+If you have a question, you can e-mail me at tour2002 [AT] arcor [dot] de
