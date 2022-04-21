@@ -5,14 +5,17 @@
 #include <sys/shm.h> 
 #include <string.h>
 #include <time.h>
+#include <syslog.h>
+
+#include "logfile.c"
 
 int write_to_memory(char* str)
-{ 
+{
     // ftok to generate unique key 
-    key_t key = ftok("shmfile",65); 
-  
+    key_t key = ftok("/",65); 
+
     // shmget returns an identifier in shmid 
-    int shmid = shmget(key,1024,0666|IPC_CREAT); 
+    int shmid = shmget(key,1024,0666|IPC_CREAT);
   
     // shmat to attach to shared memory 
     char *_str = (char*) shmat(shmid,(void*)0,0); 
@@ -24,8 +27,7 @@ int write_to_memory(char* str)
     //printf("Data written in memory: %s\n",_str); 
       
     //detach from shared memory  
-    shmdt(_str); 
-  
+    shmdt(_str);
     return 0;
 }
 
@@ -39,7 +41,7 @@ int main(int argc, char** argv)
             PROT_WRITE,
             MAP_SHARED,
             0, 0 );*/
-    	
+ 
     const char *pDevice = "/dev/input/mice";
 
     // Open Mouse
@@ -49,17 +51,20 @@ int main(int argc, char** argv)
         printf("ERROR Opening %s\n", pDevice);
         return -1;
     }
+    else {
+    	printf("opened!");
+    }
 
     int left, middle, right;
     signed char x, y;
 	write_to_memory("NOTHING");
-	
     while(1)
     {
 		// Read Mouse
 		bytes = read(fd, data, sizeof(data));
 		if(bytes > 0)
 		{
+			//printf("bytes = %d\n",  bytes);
 			left = data[0] & 0x1;   // not used but cable connected
 			right = data[0] & 0x2;    // connected!!
 			middle = data[0] & 0x4; // not used but cable connected
@@ -71,11 +76,15 @@ int main(int argc, char** argv)
 			if(right == 2) {
 				//printf("Bell pressed!!!!!!\n");
 				write_to_memory("BELL");
+				logfile("BELL_SIGNAL_FROM_USB_MOUSE");
 				write_to_history_file();
 			}
 			
-			// Testing only
-			//if(x != 0 || y != 0) { write_to_memory("BELL"); }
+			// Test ONLY:
+			if(x != 0 || y != 0) {
+				write_to_memory("X_Y_COORDINATE_CHANGE");
+			}
+			
 		}
 		//usleep(50 * 1000);
     }

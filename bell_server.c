@@ -18,16 +18,7 @@
 #include <stdbool.h>
 #include <inttypes.h>
 
-int logfile(char* message) {
-	char buffer[4096];
-	
-	setlogmask(LOG_UPTO (LOG_NOTICE));
-	openlog("bell_server", LOG_PID | LOG_NDELAY, LOG_LOCAL1);
-	//syslog (LOG_NOTICE, "Program started by User %d", getuid ());
-	snprintf((char *)buffer, sizeof(buffer), "[%s]", message);
-	syslog(LOG_NOTICE, buffer);
-	closelog();
-}
+#include "logfile.c"
 
 void ctrlc_handler(int sig)
 {
@@ -50,7 +41,7 @@ void sigpipe_handler(int unused)
 int write_to_memory(char* str)
 { 
     // ftok to generate unique key 
-    key_t key = ftok("shmfile",65); 
+    key_t key = ftok("/",65); 
   
     // shmget returns an identifier in shmid 
     int shmid = shmget(key,1024,0666|IPC_CREAT); 
@@ -66,15 +57,15 @@ int write_to_memory(char* str)
       
     //detach from shared memory  
     shmdt(str); 
-  
+	logfile("Successfull write_to_memory()");
     return 0;
 }
 
 // if "everysecond" is set, fakepress the bell every second
-int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc)
+int read_from_memory(char *sendBuff, int newsockfd, char *argv[], int argc)
 {
     // ftok to generate unique key 
-    key_t key = ftok("shmfile",65); 
+    key_t key = ftok("/",65); 
   
     // shmget returns an identifier in shmid 
     int shmid = shmget(key,1024,0666|IPC_CREAT); 
@@ -163,7 +154,7 @@ int read_from_memory(const char *sendBuff, int newsockfd, char *argv[], int argc
     shmdt(str); 
     
     // destroy the shared memory 
-    shmctl(shmid,IPC_RMID,NULL);
+    // shmctl(shmid,IPC_RMID,NULL);
 	
 	// reset
 	write_to_memory("CLEARED");
